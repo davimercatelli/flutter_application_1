@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/utils/dimensions.dart';
 import 'package:flutter_application_1/widgets/small_text.dart';
 
 class IconTextWidget extends StatelessWidget {
@@ -11,14 +12,14 @@ class IconTextWidget extends StatelessWidget {
     required this.icon, 
     required this.text, 
     required this.color, 
-    required this.iconColor
+    required this.iconColor,
   });
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(icon, color: iconColor,),
+        Icon(icon, color: iconColor, size: Dimensions.iconSize24),
         const SizedBox(width: 5,),
         SmallText(text: text, color: color,)
       ],
