@@ -26,6 +26,7 @@ class Dimensions{
   static double width45 = screenWidth/18.75;
 
   // Dynamic font size
+  static double font15 = screenHeight/76.26;
   static double font20 = screenHeight/42.20;
 
   // Rounder borders

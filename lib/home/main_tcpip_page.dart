@@ -61,7 +61,11 @@ class _MainFoodPageState extends State<MainFoodPage> {
           ),
           
           // Body panel
-          OrdersPageBody(),
+          // Expanded is a widget to allow scroll page
+          Expanded(child: SingleChildScrollView(
+            child: OrdersPageBody(),
+          ))
+          
         ],
       ),
       

@@ -14,7 +14,7 @@ class OrdersPageBody extends StatefulWidget {
   State<OrdersPageBody> createState() => _OrdersPageBodyState();
 }
 
-// To control slide panel on windows/desktop debug mode
+// To control horizontal slide panel on windows/desktop debug mode
 class AppScrollBehavior extends MaterialScrollBehavior {
   @override
   Set<PointerDeviceKind> get dragDevices => {
@@ -37,14 +37,13 @@ class _OrdersPageBodyState extends State<OrdersPageBody> {
   // Height top container
   final double _height = Dimensions.pageViewContainer;
 
-  // Get page index for the top container
+  // Get page index for the horizontal top panel
   @override
   void initState() {
     super.initState();
     pageController.addListener( () {
       setState(() {
         _currPageValue = pageController.page!;
-        //print("Current value = " + _currPageValue.toString());
         });
       }
     );
@@ -60,9 +59,8 @@ class _OrdersPageBodyState extends State<OrdersPageBody> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        // Horizontal panel
         SizedBox(
-        
-        // Front container
           height: Dimensions.pageViewFront,
           child: PageView.builder(
             controller: pageController,
@@ -73,8 +71,8 @@ class _OrdersPageBodyState extends State<OrdersPageBody> {
               }
             ),
           ),
-
-        // Dots page indicator
+        
+        // Dots indicator for horizontal panel 
         DotsIndicator(
           dotsCount: 5,
           position: _currPageValue.floor(),
@@ -87,7 +85,70 @@ class _OrdersPageBodyState extends State<OrdersPageBody> {
               ),
             ),
           ),
-        ]
+        
+        // Vertical height between dots indicator and 'Popular Text'
+        SizedBox(height: Dimensions.height20),
+        
+        // Popular text
+        Container(
+          margin: EdgeInsets.only(left: Dimensions.width30),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              BigText(text: "Popular"),
+              
+              // Horizontal space
+              SizedBox(width: Dimensions.width20,),
+              
+              // Dot space
+              Container(
+                margin: const EdgeInsets.only(bottom: 3),
+                child: BigText(text: ".", color: AppColors.mainSubtitleColor),
+                ),
+              
+              // Horizontal space
+              SizedBox(width: Dimensions.width20,),
+              
+              // Order paring
+              Container(
+                margin: const EdgeInsets.only(bottom: 4),
+                child: SmallText(text: "Order paring", color: AppColors.mainSubtitleColor),
+              ),
+            ],
+          ),
+        ),
+        
+        // Bottom images list
+        Container(
+          height: 700,
+          child: ListView.builder(
+            physics: NeverScrollableScrollPhysics(),            
+            itemCount: 10,
+            itemBuilder: (context, index){
+              return Container(
+                margin: EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20, bottom: Dimensions.height10),
+                child: Row(
+                  children: [
+                    
+                    // Bottom list images
+                    Container(
+                      height: 120,
+                      width: 120,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(Dimensions.radius20),
+                        color: AppColors.frontContainer,
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage("assets/image/maxresdefault.jpg"))                            
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              }
+            ),
+          )
+        ],
       );
     }
     
@@ -125,7 +186,7 @@ class _OrdersPageBodyState extends State<OrdersPageBody> {
         child: Stack(
           children: [
             
-            // Images containers on scrollbar
+            // Horizontal panel images
             Container(
             height: Dimensions.pageViewContainer,
             margin: EdgeInsets.only(left: Dimensions.width5, right: Dimensions.width5),
@@ -138,7 +199,7 @@ class _OrdersPageBodyState extends State<OrdersPageBody> {
               ),
             ),
             
-            // Text container
+            // Text panel container
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(
