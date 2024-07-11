@@ -118,11 +118,13 @@ class _OrdersPageBodyState extends State<OrdersPageBody> {
           ),
         ),
         
-        // Bottom images list
-        Container(
-          height: 700,
-          child: ListView.builder(
-            physics: NeverScrollableScrollPhysics(),            
+        SizedBox(height: Dimensions.height30,),
+
+        // Bottom images section
+       ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),            
+            shrinkWrap: true,
+            scrollDirection: Axis.vertical,
             itemCount: 10,
             itemBuilder: (context, index){
               return Container(
@@ -132,8 +134,8 @@ class _OrdersPageBodyState extends State<OrdersPageBody> {
                     
                     // Bottom list images
                     Container(
-                      height: 120,
-                      width: 120,
+                      width: Dimensions.listViewImgSize,
+                      height: Dimensions.listViewImgSize,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(Dimensions.radius20),
                         color: AppColors.frontContainer,
@@ -142,12 +144,48 @@ class _OrdersPageBodyState extends State<OrdersPageBody> {
                           image: AssetImage("assets/image/maxresdefault.jpg"))                            
                         ),
                       ),
+                    
+                    // Bottom text container
+                    // Expanded use all available horizontal space
+                    Expanded(
+                      child: Container(
+                        width: Dimensions.listViewTextSize,
+                        height: Dimensions.listViewTextSize,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(Dimensions.radius20),
+                            bottomRight: Radius.circular(Dimensions.radius20),
+                          ),
+                          color: AppColors.frontContainer,
+                        ),
+                        child: Padding(
+                          
+                          padding: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              BigText(text: 'Order types to create HOST_IN messages'),
+                              SmallText(text: 'Lorem ipsum dolor sit amet'),
+                              const Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  IconTextWidget(icon: Icons.circle_notifications, text: "Normal", color: AppColors.mainSubtitleColor, iconColor: AppColors.iconColor0),
+                                  IconTextWidget(icon: Icons.location_on, text: "1.7 km", color: AppColors.mainSubtitleColor, iconColor: AppColors.iconColor1),
+                                  IconTextWidget(icon: Icons.timer, text: "12 min", color: AppColors.mainSubtitleColor, iconColor: AppColors.iconColor2),
+                                ],
+                              ),
+                            ],
+                          ),
+                          ),
+                      ),
+                    )
+                    
                     ],
                   ),
                 );
               }
             ),
-          )
         ],
       );
     }
@@ -205,6 +243,8 @@ class _OrdersPageBodyState extends State<OrdersPageBody> {
               child: Container(
               height: Dimensions.pageViewTextContainer,
               margin: EdgeInsets.only(left: Dimensions.height30, right: Dimensions.height30, bottom: Dimensions.height30),
+              
+              // Text panel - Shadows and radius
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(Dimensions.radius20),
                 color: AppColors.frontContainer,
@@ -225,17 +265,20 @@ class _OrdersPageBodyState extends State<OrdersPageBody> {
                 ]
               ),
               
-              // Text of front container
+              // Text panel - Texts
               child: Container(
                 padding: EdgeInsets.only(top: Dimensions.height15, left: Dimensions.height15, right: Dimensions.height15),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     BigText(text: "Order Types"),
+                    
+                    // Vertical space
                     SizedBox(height: Dimensions.height5),
+                    
+                    // Ranking and types
                     Row(
                       children: [
-                        
                         // 5 start icons
                         Wrap(
                           children: List.generate(5, (index) => const Icon(Icons.star, color: AppColors.mainKnappColor, size: 15))
@@ -260,6 +303,8 @@ class _OrdersPageBodyState extends State<OrdersPageBody> {
                         SmallText(text: "12N"),
                       ],
                     ),
+                    
+                    // Vertical space
                     SizedBox(height: Dimensions.height15),
                     
                     // Type, Location and time
@@ -269,15 +314,15 @@ class _OrdersPageBodyState extends State<OrdersPageBody> {
                         IconTextWidget(icon: Icons.circle_notifications, text: "Normal", color: AppColors.mainSubtitleColor, iconColor: AppColors.iconColor0),
                         IconTextWidget(icon: Icons.location_on, text: "1.7 km", color: AppColors.mainSubtitleColor, iconColor: AppColors.iconColor1),
                         IconTextWidget(icon: Icons.timer, text: "12 min", color: AppColors.mainSubtitleColor, iconColor: AppColors.iconColor2),
-                      ],),
-                     //SizedBox(height: Dimensions.height5),
-                    ],
-                  ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
             ),
-          ],
-        ),
-      );
-    }
+          ),
+        ],
+      ),
+    );
+  }
 }
