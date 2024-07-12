@@ -28,6 +28,7 @@ class Dimensions{
   // Dynamic font size
   static double font15 = screenHeight/76.26;
   static double font20 = screenHeight/42.20;
+  static double font26 = screenHeight/32.46;
 
   // Rounder borders
   static double radius15 = screenHeight/56.27;
@@ -39,10 +40,12 @@ class Dimensions{
   static double iconSize16 = screenHeight/52.75;
 
   // List view size
-  static double listViewImgSize = screenWidth/3.75;
+  static double listViewImgSize = screenWidth/3.25;
   static double listViewTextSize = screenWidth/4.40;
 
   // Order details
-  static double popularOrders = screenHeight/2.41;
+  static double popularOrders = screenHeight/3.41;
+
+
 }
 

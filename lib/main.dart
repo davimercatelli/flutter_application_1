@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/home/main_tcpip_page.dart';
-import 'package:flutter_application_1/pages/orders/popular_orders_detail.dart';
+import 'package:flutter_application_1/pages/orders/orders_detail.dart';
 import 'package:get/get.dart';
 
 void main() {
