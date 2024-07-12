@@ -1,6 +1,6 @@
 # flutter_application_1
 
-A new Flutter project.
+A new Flutter project to create shopping app. Reference: https://youtu.be/7dAt-JMSCVQ
 
 ## Getting Started
 
