@@ -45,10 +45,11 @@ class _OrdersPageBodyState extends State<OrdersPageBody> {
     pageController.addListener( () {
       setState(() {
         _currPageValue = pageController.page!;
-        });
-      }
-    );
-  }
+        }
+      );
+    }
+  );
+}
 
   @override
   void dispose(){

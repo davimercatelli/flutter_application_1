@@ -91,21 +91,37 @@ class PopularOrderDetail extends StatelessWidget {
           ),
         child: Row(
           children: [
-            Container(
-              
+            
+           // Add or remove items
+           Container(
+              padding: EdgeInsets.only(top: Dimensions.height15, bottom: Dimensions.height15, left: Dimensions.width20, right: Dimensions.width20),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(Dimensions.radius20),
                 color: AppColors.frontContainer,
               ),
               child: Row(
                 children: [
-                  Icon(Icons.remove, color: AppColors.iconColor0)
+                  Icon(Icons.remove, color: AppColors.iconColor0),
+                  SizedBox(width: Dimensions.width10),
+                  BigText(text: "0"),
+                  SizedBox(width: Dimensions.width10),
+                  Icon(Icons.add, color: AppColors.iconColor0,)
                 ],
+              ),
+            ),
+            
+            // Total value buttom
+            Container(
+              padding: EdgeInsets.only(top: Dimensions.height15, bottom: Dimensions.height15, left: Dimensions.width20, right: Dimensions.width20),
+              child: BigText(text: "US10 | Add to cart", color: AppColors.mainBlackColor,),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(Dimensions.radius20),
+                color: AppColors.frontContainer,
               ),
             )
           ],
         ),
-        ),
-      );
-    }
+      ),
+    );
   }
+}
