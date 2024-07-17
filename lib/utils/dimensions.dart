@@ -46,6 +46,9 @@ class Dimensions{
   // Order details
   static double popularOrders = screenHeight/3.41;
 
+  // Bottom bar height
+  static double bottomHeightBar = screenHeight/7.03;
+
 
 }
 

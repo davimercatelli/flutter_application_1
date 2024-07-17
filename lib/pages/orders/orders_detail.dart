@@ -4,6 +4,7 @@ import 'package:flutter_application_1/utils/dimensions.dart';
 import 'package:flutter_application_1/widgets/app_column.dart';
 import 'package:flutter_application_1/widgets/app_icon.dart';
 import 'package:flutter_application_1/widgets/big_text.dart';
+import 'package:flutter_application_1/widgets/expandable_text.dart';
 
 class PopularOrderDetail extends StatelessWidget {
   const PopularOrderDetail({super.key});
@@ -14,7 +15,7 @@ class PopularOrderDetail extends StatelessWidget {
       backgroundColor: AppColors.frontContainer,
       body: Stack(
         children: [
-          // Order details image
+          // Background image
           Positioned(
             left: 0,
             right: 0,
@@ -65,13 +66,21 @@ class PopularOrderDetail extends StatelessWidget {
                   const AppColumn(text: "Order Types",),
                   
                   // Empty vertical space
-                  SizedBox(height: Dimensions.height20,),
+                  SizedBox(height: Dimensions.height30,),
                   
                   // Introduce text
                   BigText(text: "Introduce", size: Dimensions.font20),
                   
                   // Empty vertical space
                   SizedBox(height: Dimensions.height20,),
+                  
+                  // Description text
+                  // NOTE: SingleChildScrollView is used to enable scroll view and need to be inside of Expanded!!!
+                  const Expanded(
+                    child: SingleChildScrollView(
+                      child: ExpandableTextWidget(text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mattis eget augue ut semper. Praesent eu felis congue est vestibulum tincidunt eget nec magna. Proin gravida nisi quis luctus euismod. Mauris commodo molestie ligula, ac maximus urna ornare id. Donec consectetur nibh nibh, viverra pellentesque metus fringilla sed. Vestibulum ac neque vel tellus porttitor semper vitae quis lectus. Etiam pulvinar lorem vitae tellus luctus consectetur.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mattis eget augue ut semper. Praesent eu felis congue est vestibulum tincidunt eget nec magna. Proin gravida nisi quis luctus euismod. Mauris commodo molestie ligula, ac maximus urna ornare id. Donec consectetur nibh nibh, viverra pellentesque metus fringilla sed. Vestibulum ac neque vel tellus porttitor semper vitae quis lectus. Etiam pulvinar lorem vitae tellus luctus consectetur.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mattis eget augue ut semper. Praesent eu felis congue est vestibulum tincidunt eget nec magna. Proin gravida nisi quis luctus euismod. Mauris commodo molestie ligula, ac maximus urna ornare id. Donec consectetur nibh nibh, viverra pellentesque metus fringilla sed. Vestibulum ac neque vel tellus porttitor semper vitae quis lectus. Etiam pulvinar lorem vitae tellus luctus consectetur.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mattis eget augue ut semper. Praesent eu felis congue est vestibulum tincidunt eget nec magna. Proin gravida nisi quis luctus euismod. Mauris commodo molestie ligula, ac maximus urna ornare id. Donec consectetur nibh nibh, viverra pellentesque metus fringilla sed. Vestibulum ac neque vel tellus porttitor semper vitae quis lectus. Etiam pulvinar lorem vitae tellus luctus consectetur.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mattis eget augue ut semper. Praesent eu felis congue est vestibulum tincidunt eget nec magna. Proin gravida nisi quis luctus euismod. Mauris commodo molestie ligula, ac maximus urna ornare id. Donec consectetur nibh nibh, viverra pellentesque metus fringilla sed. Vestibulum ac neque vel tellus porttitor semper vitae quis lectus. Etiam pulvinar lorem vitae tellus luctus consectetur.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mattis eget augue ut semper. Praesent eu felis congue est vestibulum tincidunt eget nec magna. Proin gravida nisi quis luctus euismod. Mauris commodo molestie ligula, ac maximus urna ornare id. Donec consectetur nibh nibh, viverra pellentesque metus fringilla sed. Vestibulum ac neque vel tellus porttitor semper vitae quis lectus. Etiam pulvinar lorem vitae tellus luctus consectetur.")
+                      )
+                    ),
                   ],
                 )
               ),
@@ -79,8 +88,10 @@ class PopularOrderDetail extends StatelessWidget {
           ],
         ),
       
+      // Bottom bar
       bottomNavigationBar: Container(
-        height: 120,
+        // Color and radius
+        height: Dimensions.bottomHeightBar,
         padding: EdgeInsets.only(top: Dimensions.height30, bottom: Dimensions.height30, left: Dimensions.width20, right: Dimensions.width20),
         decoration: BoxDecoration(
           color: AppColors.bottomCartColor,
@@ -89,10 +100,12 @@ class PopularOrderDetail extends StatelessWidget {
             topRight: Radius.circular(Dimensions.radius20*2),
             )
           ),
+        
+        // Bottom bar
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            
-           // Add or remove items
+           // Bottom bar - add or remove items
            Container(
               padding: EdgeInsets.only(top: Dimensions.height15, bottom: Dimensions.height15, left: Dimensions.width20, right: Dimensions.width20),
               decoration: BoxDecoration(
@@ -101,11 +114,11 @@ class PopularOrderDetail extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  Icon(Icons.remove, color: AppColors.iconColor0),
+                  const Icon(Icons.remove, color: AppColors.iconColor0),
                   SizedBox(width: Dimensions.width10),
-                  BigText(text: "0"),
+                  BigText(text: "1"),
                   SizedBox(width: Dimensions.width10),
-                  Icon(Icons.add, color: AppColors.iconColor0,)
+                  const Icon(Icons.add, color: AppColors.iconColor0,)
                 ],
               ),
             ),
