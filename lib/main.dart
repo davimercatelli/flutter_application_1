@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/home/main_tcpip_page.dart';
 import 'package:flutter_application_1/pages/orders/orders_detail.dart';
+import 'package:flutter_application_1/pages/orders/recommended_orders.dart';
 import 'package:get/get.dart';
 
 void main() {
@@ -21,7 +22,8 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         ),
       //home: const MainFoodPage(),
-      home: const PopularOrderDetail(),
+      //home: const PopularOrderDetail(),
+      home: const RecommendedOrders(),
     );
   }
 }

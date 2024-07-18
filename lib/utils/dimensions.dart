@@ -27,6 +27,7 @@ class Dimensions{
 
   // Dynamic font size
   static double font15 = screenHeight/76.26;
+  static double font18 = screenHeight/59.33;
   static double font20 = screenHeight/42.20;
   static double font26 = screenHeight/32.46;
 
