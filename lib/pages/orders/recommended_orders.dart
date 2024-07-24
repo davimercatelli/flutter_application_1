@@ -30,8 +30,8 @@ class RecommendedOrders extends StatelessWidget {
             ),
 
             bottom: PreferredSize(
-                // Top and fixed text
-                preferredSize: Size.fromHeight(30),
+                // Top fixed title
+                preferredSize: const Size.fromHeight(30),
                 child: Container(
                   width: double.maxFinite,
                   padding: EdgeInsets.only(top: Dimensions.radius15, bottom: Dimensions.radius15),
@@ -43,12 +43,12 @@ class RecommendedOrders extends StatelessWidget {
                       )
                     ),
                   child: Center(
-                    child: BigText(size: Dimensions.font20, text: "My fck scrollable container"),
+                    child: BigText(size: Dimensions.font20, text: "My scrollable container"),
                   ),
                 )
               ),
 
-            // Backgroun image
+            // Background image
             pinned: true,
             backgroundColor: AppColors.mainKnappColor,
             expandedHeight: 200,
@@ -111,17 +111,14 @@ class RecommendedOrders extends StatelessWidget {
           Container(
             // Color and radius
             height: Dimensions.bottomHeightBar,
-            padding: EdgeInsets.only(
-                top: Dimensions.height30,
-                bottom: Dimensions.height30,
-                left: Dimensions.width20,
-                right: Dimensions.width20),
+            padding: EdgeInsets.only(top: Dimensions.height30,bottom: Dimensions.height30, left: Dimensions.width20, right: Dimensions.width20),
             decoration: BoxDecoration(
                 color: AppColors.bottomCartColor,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(Dimensions.radius20 * 2),
                   topRight: Radius.circular(Dimensions.radius20 * 2),
-                )),
+                )
+              ),
 
             // Bottom bar
             child: Row(
@@ -142,18 +139,14 @@ class RecommendedOrders extends StatelessWidget {
 
                 // Total value buttom
                 Container(
-                  padding: EdgeInsets.only(
-                      top: Dimensions.height15,
-                      bottom: Dimensions.height15,
-                      left: Dimensions.width20,
-                      right: Dimensions.width20),
-                  child: BigText(
-                    text: "US10 | Add to cart",
-                    color: AppColors.mainBlackColor,
-                  ),
+                  padding: EdgeInsets.only(top: Dimensions.height15, bottom: Dimensions.height15, left: Dimensions.width20, right: Dimensions.width20),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(Dimensions.radius20),
                     color: AppColors.frontContainer,
+                  ),
+                  child: BigText(
+                    text: "US10 | Add to cart",
+                    color: AppColors.mainBlackColor,
                   ),
                 )
               ],
