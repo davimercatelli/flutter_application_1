@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/controller/popular_product_controller.dart';
 import 'package:flutter_application_1/pages/home/main_tcpip_page.dart';
+import 'package:flutter_application_1/pages/home/orders_page_body.dart';
 import 'package:flutter_application_1/pages/orders/orders_detail.dart';
 import 'package:flutter_application_1/pages/orders/recommended_orders.dart';
 import 'package:get/get.dart';
@@ -27,8 +28,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 72, 66, 82)),
         useMaterial3: true,
         ),
-      //home: const MainFoodPage(),
-      home: const PopularOrderDetail(),
+      home: const MainFoodPage(),
+      //home: const PopularOrderDetail(),
       //home: const RecommendedOrders(),
     );
   }

@@ -1,12 +1,14 @@
 import 'dart:ui';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/controller/popular_product_controller.dart';
 import 'package:flutter_application_1/utils/colors.dart';
 import 'package:flutter_application_1/utils/dimensions.dart';
 import 'package:flutter_application_1/widgets/app_column.dart';
 import 'package:flutter_application_1/widgets/big_text.dart';
 import 'package:flutter_application_1/widgets/icon_text_widget.dart';
 import 'package:flutter_application_1/widgets/small_text.dart';
+import 'package:get/get.dart';
 
 class OrdersPageBody extends StatefulWidget {
   const OrdersPageBody({super.key});
@@ -61,8 +63,8 @@ class _OrdersPageBodyState extends State<OrdersPageBody> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // Horizontal panel
-        SizedBox(
+        // Slider horizontal panel
+       /* SizedBox(
           height: Dimensions.pageViewFront,
           child: PageView.builder(
             controller: pageController,
@@ -73,9 +75,22 @@ class _OrdersPageBodyState extends State<OrdersPageBody> {
               }
             ),
           ),
+          */
+        GetBuilder<PopularProductController>(builder:(popularProducts){
+          return Container(
+          height: Dimensions.pageViewFront,
+          child: PageView.builder(
+            controller: pageController,
+            scrollBehavior: AppScrollBehavior(),
+            itemCount: popularProducts.popularProductList.length,
+            itemBuilder: (context, position) {
+              return _buildPageItem(position);
+              }),
+            );
+        }),
         
         // Dots indicator for horizontal panel 
-        DotsIndicator(
+        /*DotsIndicator(
           dotsCount: 5,
           position: _currPageValue.floor(),
           decorator: DotsDecorator(
@@ -86,7 +101,37 @@ class _OrdersPageBodyState extends State<OrdersPageBody> {
               borderRadius: BorderRadius.circular(5.0)
               ),
             ),
-          ),
+          )
+          ,*/
+
+        GetBuilder<PopularProductController>(builder: (popularProducts){
+          return new DotsIndicator(
+          dotsCount: popularProducts.popularProductList.isEmpty?1:popularProducts.popularProductList.length,
+          //dotsCount: popularProducts.length==0?1:popularProducts.length,
+          position: _currPageValue.floor(),
+          decorator: DotsDecorator(
+            activeColor: AppColors.mainColor,
+            size: const Size.square(9.0),
+            activeSize: const Size(18.0, 9.0),
+            activeShape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5.0)
+              ),
+            ),
+          );
+        }),
+
+        /*GetBuilder<PopularProductController>(builder: (productController){
+          return new DotsIndicator(
+            dotsCount:productController.popularProductList.length==0?1:productController.popularProductList.length,
+            position: _currPageValue.floor(),
+            decorator: DotsDecorator(
+              size: const Size.square(9.0),
+              activeSize: const Size(18.0, 9.0),
+              activeShape: RoundedRectangleBorder(borderRadius:
+              BorderRadius.circular(5.0)),
+            ),
+          );
+        }),*/
         
         // Vertical height between dots indicator and 'Popular Text'
         SizedBox(height: Dimensions.height20),
@@ -120,14 +165,14 @@ class _OrdersPageBodyState extends State<OrdersPageBody> {
           ),
         ),
         
-        SizedBox(height: Dimensions.height30,),
+        SizedBox(height: Dimensions.height10,),
 
         // Bottom images section
        ListView.builder(
             physics: const NeverScrollableScrollPhysics(),            
             shrinkWrap: true,
             scrollDirection: Axis.vertical,
-            itemCount: 10,
+            itemCount: 5,
             itemBuilder: (context, index){
               return Container(
                 margin: EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20, bottom: Dimensions.height10),
@@ -143,7 +188,7 @@ class _OrdersPageBodyState extends State<OrdersPageBody> {
                         color: AppColors.frontContainer,
                         image: const DecorationImage(
                           fit: BoxFit.cover,
-                          image: AssetImage("assets/image/maxresdefault.jpg"))                            
+                          image: AssetImage("assets/image/Pizza.jpg"))                            
                         ),
                       ),
                     
@@ -168,7 +213,7 @@ class _OrdersPageBodyState extends State<OrdersPageBody> {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              BigText(text: 'Order types to create HOST_IN messages'),
+                              BigText(text: 'Order your pizza'),
                               SmallText(text: 'Lorem ipsum dolor sit amet'),
                               const Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
