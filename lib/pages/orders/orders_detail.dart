@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_application_1/pages/home/main_tcpip_page.dart';
+import 'package:flutter_application_1/pages/home/orders_page_body.dart';
 import 'package:flutter_application_1/utils/colors.dart';
 import 'package:flutter_application_1/utils/dimensions.dart';
 import 'package:flutter_application_1/widgets/app_column.dart';
 import 'package:flutter_application_1/widgets/app_icon.dart';
 import 'package:flutter_application_1/widgets/big_text.dart';
 import 'package:flutter_application_1/widgets/expandable_text.dart';
+import 'package:get/get.dart';
 
 class PopularOrderDetail extends StatelessWidget {
   const PopularOrderDetail({super.key});
@@ -36,10 +40,15 @@ class PopularOrderDetail extends StatelessWidget {
             top: Dimensions.height20,
             left: Dimensions.width20,
             right: Dimensions.width20,
-            child: const Row(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppIcon(icon: Icons.arrow_back_ios),
+                GestureDetector(
+                  onTap: (){
+                    Get.to(()=>MainFoodPage());
+                  },
+                  child: AppIcon(icon: Icons.arrow_back_ios)
+                  ),
                 AppIcon(icon: Icons.shopping_cart),
               ],
             ),

@@ -8,9 +8,7 @@ class ApiClient extends GetConnect implements GetxService{
 
   late Map<String, String> _mainHeaders;
 
-  ApiClient({
-    required this.appBaseUrl
-    }){
+  ApiClient({required this.appBaseUrl}){
     baseUrl = appBaseUrl;
     timeout = const Duration(seconds: 30);
     //token = '';
@@ -23,7 +21,9 @@ class ApiClient extends GetConnect implements GetxService{
   Future<Response> getData(String uri,) async{
     try{
       Response response = await get(uri);
+      print("body to string"+response.body.toString());
       return response;
+      
     }catch(e){
       return Response(statusCode: 1, statusText: e.toString());
     }

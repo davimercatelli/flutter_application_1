@@ -6,10 +6,10 @@ class Products {
   List<ProductModel> get products=>_products;
 
   Products({required totalSize, required typeId, required offset, required products}){
-    _totalSize=totalSize;
-    _typeId=typeId;
-    _offset=offset;
-    _products=products;
+    this._totalSize=totalSize;
+    this._typeId=typeId;
+    this._offset=offset;
+    this._products=products;
   }
 
   Products.fromJson(Map<String, dynamic> json) {
@@ -19,13 +19,14 @@ class Products {
 
     // List of maps
     if (json['products'] != null) {
-
+      //print(_products);
       // Initialize product list with empty array
       _products = <ProductModel>[];
-      json['ProductModel'].forEach((v) {
-
+      print(_products);
+      json['products'].forEach((v) {
         // Add each list item
         _products.add(ProductModel.fromJson(v));
+        //List<ProductModel>;
       });
     }
   }
@@ -69,4 +70,6 @@ class ProductModel {
     updated = json['updated'];
     typeId = json['type_id'];
   }
+
+  get popularProductList => null;
 }
