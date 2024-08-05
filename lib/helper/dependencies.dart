@@ -7,11 +7,7 @@ import 'package:flutter_application_1/utils/app_constants.dart';
 import 'package:get/get.dart';
 
 Future<void> init()async {
-
-  // Way to load repository into function
-  
   // API client
-  //Get.lazyPut(()=>ApiClient(appBaseUrl: "https://mvs.bslmeiyu.com"));
   Get.lazyPut(()=>ApiClient(appBaseUrl: AppConstants.BASE_URL));
 
   // Repository

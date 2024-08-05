@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/controller/popular_product_controller.dart';
 import 'package:flutter_application_1/controller/recommended_product_controller.dart';
-import 'package:flutter_application_1/pages/home/main_tcpip_page.dart';
+import 'package:flutter_application_1/pages/home/main_food_page.dart';
 import 'package:flutter_application_1/pages/home/orders_page_body.dart';
 import 'package:flutter_application_1/pages/orders/orders_detail.dart';
 import 'package:flutter_application_1/pages/orders/recommended_orders.dart';
@@ -18,9 +18,8 @@ Future<void> main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  // This widget is the root of application.
   @override
+  // This widget is the root of application
   Widget build(BuildContext context) {
     // Method to load the data from server
     Get.find<PopularProductController>().getPopularProductList();
