@@ -12,7 +12,7 @@ import 'package:flutter_application_1/widgets/expandable_text.dart';
 import 'package:get/get.dart';
 
 class PopularOrderDetail extends StatelessWidget {
-  int pageId;
+  final int pageId;
   PopularOrderDetail({
     super.key,
     required this.pageId
@@ -21,8 +21,7 @@ class PopularOrderDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var product=Get.find<PopularProductController>().popularProductList[pageId];
-    //print("Page ID = <"+pageId.toString()+">");
-    //print("Product name"+product.name.toString());
+    Get.find<PopularProductController>().initProduct();
     return Scaffold(
       backgroundColor: AppColors.frontContainer,
       // Background image, header and detail text
@@ -109,7 +108,8 @@ class PopularOrderDetail extends StatelessWidget {
       ),
       
       // Bottom bar
-      bottomNavigationBar: Container(
+      bottomNavigationBar: GetBuilder<PopularProductController>(builder: (popularProduct){
+        return Container(
         // Color and radius
         height: Dimensions.bottomHeightBar,
         padding: EdgeInsets.only(top: Dimensions.height30, bottom: Dimensions.height30, left: Dimensions.width20, right: Dimensions.width20),
@@ -134,11 +134,21 @@ class PopularOrderDetail extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  const Icon(Icons.remove, color: AppColors.iconColor0),
+                  GestureDetector(
+                    onTap: (){
+                      popularProduct.setQuantity(false);
+                    },
+                    child: Icon(Icons.remove, color: AppColors.iconColor0),
+                  ),  
                   SizedBox(width: Dimensions.width10),
-                  BigText(text: "1"),
+                  BigText(text: popularProduct.quantity.toString()),
                   SizedBox(width: Dimensions.width10),
-                  const Icon(Icons.add, color: AppColors.iconColor0,)
+                  GestureDetector(
+                    onTap: (){
+                      popularProduct.setQuantity(true);
+                    },
+                    child: Icon(Icons.add, color: AppColors.iconColor0,)
+                    )
                 ],
               ),
             ),
@@ -154,7 +164,8 @@ class PopularOrderDetail extends StatelessWidget {
             )
           ],
         ),
-      ),
+      );
+      },)
     );
   }
 }
