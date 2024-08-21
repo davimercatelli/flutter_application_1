@@ -9,20 +9,18 @@ class RecommendedProductController extends GetxController {
   List<dynamic> get recommendedProductList => _recommendedProductList;
 
   bool _isLoaded = false;
-  bool get isLoaded=>_isLoaded;
+  bool get isLoaded => _isLoaded;
 
   get img => null;
 
   Future<void> getRecommendedProductList() async {
-    Response response = await recommendedProductRepo.getRecommendedProductList();
+    Response response =
+        await recommendedProductRepo.getRecommendedProductList();
     if (response.statusCode == 200) {
-      print("Recommended loaded");
       _recommendedProductList = [];
       _recommendedProductList.addAll(Products.fromJson(response.body).products);
-      _isLoaded=true;
+      _isLoaded = true;
       update();
-    }else{
-      print("Not recommended loaded");
-    }
+    } else {}
   }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_application_1/controller/cart_controller.dart';
+import 'package:flutter_application_1/controller/popular_product_controller.dart';
 import 'package:flutter_application_1/controller/recommended_product_controller.dart';
 import 'package:flutter_application_1/pages/home/main_food_page.dart';
 import 'package:flutter_application_1/routes/route_helper.dart';
@@ -22,6 +24,7 @@ class RecommendedOrders extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var product = Get.find<RecommendedProductController>().recommendedProductList[pageId];
+    Get.find<PopularProductController>().initProduct(product, Get.find<CartController>());
     return Scaffold(
       backgroundColor: AppColors.frontContainer,
       body: CustomScrollView(
@@ -42,7 +45,39 @@ class RecommendedOrders extends StatelessWidget {
                   child: AppIcon(icon: Icons.clear),
                 ),
                 // Shopping icon
-                AppIcon(icon: Icons.shopping_cart_outlined),
+                //AppIcon(icon: Icons.shopping_cart_outlined),
+                 GetBuilder<PopularProductController>(builder: (controller) {
+                    return Stack(
+                      children: [
+                        AppIcon(icon: Icons.shopping_cart_outlined, size: Dimensions.height40,),
+                        Get.find<PopularProductController>().totalItems >= 1
+                            ? Positioned(
+                              right: 0,
+                              top: 0,
+                                child: AppIcon(
+                                  icon: Icons.circle,
+                                  size: Dimensions.height20,
+                                  iconColor: AppColors.mainColor,
+                                  backgroundColor: AppColors.mainColor,
+                                ),
+                            )
+                            : Container(),
+                        Get.find<PopularProductController>().totalItems >= 1
+                            ? Positioned(
+                              
+                              right: 8,
+                              top: 2,
+                                child: BigText(
+                                  text: Get.find<PopularProductController>().totalItems.toString(),
+                                  size: Dimensions.font15,
+                                  color: AppColors.mainKnappColor,
+                                ),
+                            )
+                            : Container(),
+                          
+                      ],
+                    );
+                  })
               ],
             ),
 
@@ -95,7 +130,9 @@ class RecommendedOrders extends StatelessWidget {
       ),
 
       // Bottom bar with add and remove
-      bottomNavigationBar: Column(
+      // controller is a instance from PopularProductContoller
+      bottomNavigationBar: GetBuilder<PopularProductController>(builder: (controller){
+        return Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
@@ -108,17 +145,27 @@ class RecommendedOrders extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                  // Add icon
-                AppIcon(iconSize: Dimensions.iconSize24, icon: Icons.remove),
+                GestureDetector(
+                  onTap: (){
+                    controller.setQuantity(false);
+                  },
+                  child: AppIcon(iconSize: Dimensions.iconSize24, icon: Icons.remove),
+                ),
 
                 // Amount of itens
                 BigText(
-                  text: "\$ ${product.price!} X 0",
+                  text: "\$ ${product.price!} X ${controller.inCartItens}",
                   color: AppColors.mainBlackColor,
                   size: Dimensions.font26,
                 ),
 
                 // Remove icon
-                AppIcon(iconSize: Dimensions.iconSize24, icon: Icons.add),
+                GestureDetector(
+                  onTap: (){
+                    controller.setQuantity(true);
+                  },
+                  child: AppIcon(iconSize: Dimensions.iconSize24, icon: Icons.add),
+                )
               ],
             ),
           ),
@@ -154,22 +201,31 @@ class RecommendedOrders extends StatelessWidget {
                 ),
 
                 // Total value buttom
-                Container(
+                GestureDetector(
+                  onTap: (){ 
+                    controller.addItem(product);
+                  },
+                  child: Container(
                   padding: EdgeInsets.only(top: Dimensions.height15, bottom: Dimensions.height15, left: Dimensions.width20, right: Dimensions.width20),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(Dimensions.radius20),
                     color: AppColors.frontContainer,
                   ),
                   child: BigText(
-                    text: "US10 | Add to cart",
+                    text: "\$ ${product.price!} | Add to cart",
                     color: AppColors.mainBlackColor,
                   ),
                 )
-              ],
+              
+                )
+                ],
             ),
           ),
         ],
-      ),
-    );
+      );
+    
+      })
+      
+      );
   }
 }
