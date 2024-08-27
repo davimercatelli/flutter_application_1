@@ -1,8 +1,10 @@
-import 'package:flutter/cupertino.dart';
+
+// ignore_for_file: prefer_const_constructors_in_immutables
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/controller/cart_controller.dart';
 import 'package:flutter_application_1/controller/popular_product_controller.dart';
+import 'package:flutter_application_1/pages/cart/cart_page.dart';
 import 'package:flutter_application_1/pages/home/main_food_page.dart';
 import 'package:flutter_application_1/pages/home/orders_page_body.dart';
 import 'package:flutter_application_1/utils/app_constants.dart';
@@ -68,11 +70,17 @@ class PopularOrderDetail extends StatelessWidget {
                             ? Positioned(
                               right: 0,
                               top: 0,
-                                child: AppIcon(
-                                  icon: Icons.circle,
-                                  size: Dimensions.height20,
-                                  iconColor: AppColors.mainColor,
-                                  backgroundColor: AppColors.mainColor,
+                                child: GestureDetector(
+                                  onTap: (){
+                                   // print("TEST");
+                                    Get.to(()=>const CartPage());
+                                  },
+                                  child: AppIcon(
+                                    icon: Icons.circle,
+                                    size: Dimensions.height20,
+                                    iconColor: AppColors.mainColor,
+                                    backgroundColor: AppColors.mainColor,
+                                  ),
                                 ),
                             )
                             : Container(),
@@ -187,7 +195,7 @@ class PopularOrderDetail extends StatelessWidget {
                             popularProduct.setQuantity(false);
                           },
                           child:
-                              Icon(Icons.remove, color: AppColors.iconColor0),
+                              const Icon(Icons.remove, color: AppColors.iconColor0),
                         ),
                         SizedBox(width: Dimensions.width10),
                         BigText(text: popularProduct.inCartItens.toString()),
@@ -196,7 +204,7 @@ class PopularOrderDetail extends StatelessWidget {
                             onTap: () {
                               popularProduct.setQuantity(true);
                             },
-                            child: Icon(
+                            child: const Icon(
                               Icons.add,
                               color: AppColors.iconColor0,
                             ))

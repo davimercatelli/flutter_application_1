@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/controller/popular_product_controller.dart';
 import 'package:flutter_application_1/controller/recommended_product_controller.dart';
+import 'package:flutter_application_1/pages/cart/cart_page.dart';
 import 'package:flutter_application_1/pages/home/main_food_page.dart';
 import 'package:flutter_application_1/pages/home/orders_page_body.dart';
 import 'package:flutter_application_1/pages/orders/orders_detail.dart';
@@ -30,7 +31,8 @@ class MyApp extends StatelessWidget {
       home: const MainFoodPage(),
       //home: const PopularOrderDetail(),
       //home: const RecommendedOrders(),
-      //initialRoute: RouteHelper.initial,
+      initialRoute: RouteHelper.initial,
+      //home: const CartPage(),
       getPages: RouteHelper.routes,
     );
   }

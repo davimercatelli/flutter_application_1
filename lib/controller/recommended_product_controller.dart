@@ -14,8 +14,7 @@ class RecommendedProductController extends GetxController {
   get img => null;
 
   Future<void> getRecommendedProductList() async {
-    Response response =
-        await recommendedProductRepo.getRecommendedProductList();
+    Response response = await recommendedProductRepo.getRecommendedProductList();
     if (response.statusCode == 200) {
       _recommendedProductList = [];
       _recommendedProductList.addAll(Products.fromJson(response.body).products);

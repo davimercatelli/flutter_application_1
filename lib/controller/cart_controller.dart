@@ -27,11 +27,14 @@ class CartController extends GetxController {
           time: DateTime.now().toString(),
         );
       });
+
+      // If the total quantity is less than 0, remove the product from shopping cart
       if (totalQuantity <= 0) {
         _items.remove(product.id);
       }
-    
+
     // If the items are added for the first time to shopping cart
+    // Use putIfAbsent
     } else {
       if (quantity > 0) {
         _items.putIfAbsent(product.id!, () {
@@ -56,6 +59,7 @@ class CartController extends GetxController {
     }
   }
 
+  // Check if the product exist on cart
   bool existInCart(ProductModel product) {
     if (_items.containsKey(product.id)) {
       return true;
@@ -63,6 +67,7 @@ class CartController extends GetxController {
     return false;
   }
 
+  // Get the total amount in the shopping cart
   getQuantity(ProductModel product) {
     var quantity = 0;
     if (_items.containsKey(product.id)) {
@@ -81,5 +86,12 @@ class CartController extends GetxController {
       totalQuantity += value.quantity!;
     });
     return totalQuantity;
+  }
+
+  // List to print the items on cart page
+  List<CartModel> get getItems {
+    return _items.entries.map((e) {
+      return e.value;
+    }).toList();
   }
 }

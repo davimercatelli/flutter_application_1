@@ -1,9 +1,10 @@
-import 'package:flutter/cupertino.dart';
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/controller/cart_controller.dart';
 import 'package:flutter_application_1/controller/popular_product_controller.dart';
 import 'package:flutter_application_1/controller/recommended_product_controller.dart';
+import 'package:flutter_application_1/pages/cart/cart_page.dart';
 import 'package:flutter_application_1/pages/home/main_food_page.dart';
 import 'package:flutter_application_1/routes/route_helper.dart';
 import 'package:flutter_application_1/utils/app_constants.dart';
@@ -42,14 +43,18 @@ class RecommendedOrders extends StatelessWidget {
                   onTap: (){
                     Get.toNamed(RouteHelper.getInitial());
                   },
-                  child: AppIcon(icon: Icons.clear),
+                  child: const AppIcon(icon: Icons.clear),
                 ),
                 // Shopping icon
                 //AppIcon(icon: Icons.shopping_cart_outlined),
                  GetBuilder<PopularProductController>(builder: (controller) {
                     return Stack(
                       children: [
-                        AppIcon(icon: Icons.shopping_cart_outlined, size: Dimensions.height40,),
+                        GestureDetector(
+                          onTap: (){
+                            Get.to(()=>const CartPage());
+                          },
+                          child: AppIcon(icon: Icons.shopping_cart_outlined, size: Dimensions.height40,)),
                         Get.find<PopularProductController>().totalItems >= 1
                             ? Positioned(
                               right: 0,
