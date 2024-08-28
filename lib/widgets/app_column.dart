@@ -7,17 +7,15 @@ import 'package:flutter_application_1/widgets/small_text.dart';
 
 class AppColumn extends StatelessWidget {
   final String text;
-  const AppColumn({
-    super.key,
-    required this.text
-  });
+  const AppColumn({super.key, required this.text});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        BigText(text: text, size: Dimensions.font26,),
+        BigText(text: text, size: Dimensions.font26,
+        ),
 
         // Vertical space
         SizedBox(height: Dimensions.height5),
@@ -27,8 +25,10 @@ class AppColumn extends StatelessWidget {
           children: [
             // 5 start icons
             Wrap(
-                children: List.generate(5, (index) => const Icon(Icons.star, color: AppColors.mainKnappColor, size: 15))
-                ),
+                children: List.generate(
+                    5,
+                    (index) => const Icon(Icons.star,
+                        color: AppColors.mainKnappColor, size: 15))),
 
             // Space
             SizedBox(width: Dimensions.height20),
@@ -63,14 +63,14 @@ class AppColumn extends StatelessWidget {
                 text: "Normal",
                 color: AppColors.mainSubtitleColor,
                 iconColor: AppColors.iconColor0),
-            
+
             // Distance
             IconTextWidget(
                 icon: Icons.location_on,
                 text: "1.7 km",
                 color: AppColors.mainSubtitleColor,
                 iconColor: AppColors.iconColor1),
-            
+
             // Time
             IconTextWidget(
                 icon: Icons.timer,
