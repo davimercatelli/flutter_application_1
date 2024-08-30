@@ -12,11 +12,13 @@ class CartController extends GetxController {
   // Function to add items
   void addItem(ProductModel product, int quantity) {
     var totalQuantity = 0;
-
     // Check if the items are already add to shopping cart
+    // Update the map
     if (_items.containsKey(product.id!)) {
       _items.update(product.id!, (value) {
+
         totalQuantity = value.quantity! + quantity;
+        
         return CartModel(
           id: value.id,
           name: value.name,
@@ -25,8 +27,10 @@ class CartController extends GetxController {
           quantity: value.quantity! + quantity,
           isExist: true,
           time: DateTime.now().toString(),
+          product: product,
         );
-      });
+      }
+    );
 
       // If the total quantity is less than 0, remove the product from shopping cart
       if (totalQuantity <= 0) {
@@ -46,8 +50,10 @@ class CartController extends GetxController {
             quantity: quantity,
             isExist: true,
             time: DateTime.now().toString(),
+            product: product,
           );
-        });
+        }
+      );
 
       // Not possible to add 0 items to shopping cart
       } else {
@@ -57,6 +63,7 @@ class CartController extends GetxController {
         );
       }
     }
+    update();
   }
 
   // Check if the product exist on cart
@@ -93,5 +100,16 @@ class CartController extends GetxController {
     return _items.entries.map((e) {
       return e.value;
     }).toList();
+
+    }
+  
+  int get totalAmount{
+    var total=0;
+    _items.forEach( ( key, value ) {
+      total += value.quantity!*value.price! ;
+    });
+      return total;
   }
+
+
 }
